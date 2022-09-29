@@ -18,12 +18,12 @@ def closestWord(phrase):
         probabilities = {}
         for lines in matches:
             if lines in probabilities:
-                probabilities[lines] += (1 / filelenght)
+                probabilities[lines] += (1 / 1+(filelenght * new_phrase.count(lines)))
             else:
-                probabilities[lines] = (1 / filelenght)
+                probabilities[lines] = (1 / 1+(filelenght * new_phrase.count(lines)))
 
     if len(probabilities)>0:
-        closestWord = max(probabilities)
+        closestWord = max(probabilities, key=probabilities.get)
         return closestWord
     else:
         return ""
@@ -39,4 +39,4 @@ def elaborate(phrase,answersize):
     return answer
 
 prompt = input("Prompt: ")
-print(elaborate(prompt,10))
+print(elaborate(prompt,50))
